@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+        var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Interface.json", { onProgress: UnityProgress });
+    </script> -->
+
+    <title>ACO Run</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="icon" href="images/tick.svg">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+            background-color: #1e1e1e;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #1F1F1F;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #2E2E2E;
+            border-radius: 10px;
+        }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #3D3D3D;
+            }
+
+
+        body {
+            background-color: #1F1F1F;
+        }
+
+        .arrow-container {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
+
+        .arrow-button {
+            margin: 8px;
+            cursor: pointer;
+        }
+
+            .arrow-button:hover {
+                opacity: 50%;
+            }
+
+        .set-button {
+            color: #F1F1F1;
+            margin: 8px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+            .set-button:hover {
+                opacity: 50%;
+            }
+
+        fieldset {
+            margin: 8px;
+            width: fit-content;
+            border-radius: 10px;
+            border-color: #2C2F33;
+            border-style: solid;
+        }
+
+        input {
+            color: #1F1F1F;
+            font-family: 'Poppins', sans-serif;
+            background-color: white;
+            font-size: 14px;
+            padding: 4px;
+            border-radius: 10px;
+            margin: 12px;
+            border: 0px;
+        }
+
+        .unityContainer {
+            vertical-align: middle;
+            width: 95vw;
+            height: 95vh;
+            text-align: center;
+            margin: 0 auto;
+            background-color: #1E1E1E;
+            border-radius: 25px;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .inputs {
+            flex: 75vw;
+            width: fit-content;
+            background-color: aliceblue;
+        }
+
+        .controls {
+            flex: 25vw;
+            width: fit-content;
+            background-color: aliceblue;
+            margin: 16px;
+        }
+
+        @media (max-width: 800px) {
+
+            .inputs,
+            .controls {
+                flex: 100%;
+            }
+        }
+    </style>
+
+    <script src="https://pyodide-cdn2.iodide.io/v0.15.0/full/pyodide.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.18.1/full/pyodide.js"></script>
+
+
+    <script type="text/javascript">
+
+        async function main() {
+            let pyodide = await loadPyodide({ indexURL: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/" });
+            await pyodide.loadPackage("micropip");
+            pyodide.runPython(`
+                    import js
+
+                    def parse_text(text):
+                        console.log("Testing");
+                `);
+
+            pyodide.loadPackage(['numpy', 'matplotlib', 'cv2']).then(() => {
+                // numpy is now available
+                python_code =
+                    `
+import js
+import numpy as np
+import matplotlib.pyplot as plt
+import json
+import io, base64
+
+print("Models")
+                    `
+                pyodide.runPython(python_code)
+            })
+            self.parse_text = pyodide.globals.get("parse_text");
+
+        };
+
+        function initialiseCode() {
+            main();
+        }
+    </script>
+</head>
+
+<body>
+
+    <br>
+    <h2 onclick="initialiseCode()">Model from Maps</h2>
+    <br>
+
+    <!-- <div class="unityContainer" id="unityContainer"></div> -->
+
+    <!-- 
+    <div class="webgl-content">
+        <div id="unityContainer" style="width: 960px; height: 600px"></div>
+        <div class="footer">
+            <div class="webgl-logo"></div>
+            <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+            <div class="title"></div>
+        </div>
+    </div> -->
+
+</body>
+
+</html>
